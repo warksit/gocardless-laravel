@@ -13,7 +13,7 @@ It provides a Facade that wraps the Gocardless PHP client and also an easy way t
 
 ##### Installation
 
-**1.** If you are using Laravel >5.5 the package will be autodiscobered, for older versions add the service provider at your config/app.php file.
+**1.** If you are using Laravel >5.5 the package will be autodiscovered, for older versions add the service provider at your config/app.php file.
 
 **2.** Publish the configuration file
 ```bash
@@ -29,7 +29,7 @@ and add your Gocardless API token and environment to the `.env` file.
 
 **4.** After publishing the migration you can run the migration and create the `gocardless_webhooks_table`
 
-**5.** The package provides a Macro route (`gocardlessWebhooks`). You can create a route at your routes file of your app. This route will be the endpoint where Gocardless will send the webhooks, you should register this webhook endpoint at your Gocardless dashboard.
+**5.** The package provides a Macro route (`gocardlessWebhooks`). You can create a route in the routes file of your app. This route will be the endpoint where Gocardless will send the webhooks, you should register this webhook endpoint at your Gocardless dashboard.
 
 ```php
 Route::gocardlessWebhooks('gocardless-webhook-endpoint');
@@ -45,13 +45,13 @@ protected $except = [
 
 ##### Usage
 
-Once the package is properly installed you can use the `Gocardless` facade to access the methods of the Gocardless PHP client. The documentation of this methods can be found here: [Gocardless PHP cleint documentation](https://github.com/gocardless/gocardless-pro-php)
+Once the package is properly installed you can use the `Gocardless` facade to access the methods of the Gocardless PHP client. The documentation of these methods can be found here: [Gocardless PHP client documentation](https://github.com/gocardless/gocardless-pro-php)
 
-If you use Gocardless at your project you provably will use webhooks to handle the asynchronous payment states. This package provides an easy way to handle the webhooks.
+If you use Gocardless in your project you will probably use webhooks to handle the asynchronous payment states. This package provides an easy way to handle the webhooks.
 
-Gocardless will send you webhooks with events. This events will contain the updates of your Gocardless resources.
+Gocardless will send you webhooks with events. These events will contain the updates of your Gocardless resources.
 
-This package will verify the signature of the requests and if it's valid. Unless something goes terribly wrong, and even if one of the events inside the webhook fails the controller will reposnd with a `200` to Gocardless. This prevents Gocardless from spamming retries to the endpoint.
+This package will verify the signature of the requests and check if it is valid. Unless something goes terribly wrong, and even if one of the events inside the webhook fails the controller will reposnd with a `200` to Gocardless. This prevents Gocardless from spamming retries to the endpoint.
 
 If an event fails to be processed the exception will be saved to the database into the `gocardless_webhook_calls` table, you can find the failed events there.
 
